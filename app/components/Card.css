@@ -36,12 +36,12 @@
   }
   
   .cardFront {
-    background-color: #f6f6f6;
+    background-color: #FBF3D5;
     color: #2d4059;
   }
   
   .cardBack {
-    background-color: #ffffff;
+    background-color: #D6DAC8;
     color: #2d4059;
     transform: rotateY(180deg);
   }
@@ -54,11 +54,11 @@
   }
   
   .cardHeaderFront {
-    background-color: #2d4059;
+    background-color: #EFBC9B;
   }
   
   .cardHeaderBack {
-    background-color: #FFB400;
+    background-color: #EFBC9B;
   }
   
   .iconButton {
@@ -73,7 +73,7 @@
   .cardActions .iconButton {
     background: none;
     border: none;
-    color: #2d4059;
+    color: #EFBC9B;
     cursor: pointer;
     font-size: 20px;
   }
@@ -90,14 +90,15 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #FFB400;
+    background-color: #EFBC9B;
     color: white;
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
   
   .progressButton:hover {
-    background-color: #f9bb2c;
+    background-color: #FBF3D5;
     transform: scale(1.1);
+    color: #D6DAC8;
   }
   
   .cardActions {

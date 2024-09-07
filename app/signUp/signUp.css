@@ -1,0 +1,99 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Use viewport height to cover the entire screen */
+    width: 100vw; /* Ensure it covers the full width */
+    background-image: url('/i4.jpg'); /* Reference the image in the public folder */
+    background-size: cover; /* Ensure the background covers the entire container */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+  }
+  
+  .signup-form {
+    background-color: #ffffff; /* Use the palette color for the form background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .signup-form h2 {
+    text-align: center;
+    color: #9CAFAA; /* Text color from the palette */
+    margin-bottom: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #9CAFaa; /* Label color from the palette */
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #EFBC9B;
+    border-radius: 4px;
+  }
+  
+  .form-group input.input-error {
+    border-color: #e74c3c;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 5px;
+  }
+  
+  .signup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #EFBc9B; /* Button color from the palette */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .signup-button:hover {
+    background-color: #FBF3D5; /* Hover effect color */
+    color: #9CAFAA;
+    border: 2px solid #9CAFAA; /* Add border on hover */
+  }
+  
+  .already-account {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .already-account a {
+    color: #9CAFaa; /* Link color from the palette */
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .already-account a:hover {
+    text-decoration: underline;
+  }
+  
