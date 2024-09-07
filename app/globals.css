@@ -1,0 +1,14 @@
+:root {
+    --color-primary: #EFBC9B; /* Bright Aqua */
+    --color-secondary: #FBF3D5; /* Light Peach */
+    --color-accent1: #D6DAC8; /* Vibrant Purple */
+    --color-accent2: #9CAFAA; /* Mint Green */
+    --text-color:white; /* Deep Blue */
+}
+[data-theme="dark"] {
+    --color-primary: #1a1a2e; /* Dark Blue */
+    --color-secondary: #16213e; /* Deep Purple */
+    --color-accent1: #0f3460; /* Midnight Blue */
+    --color-accent2: #e94560; /* Coral Red */
+    --text-color: #f0f0f0; /* Light text */
+}

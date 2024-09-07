@@ -1,0 +1,133 @@
+/* Define the new playful and unique palette */
+
+
+/* Navbar Styles */
+.navbar-custom {
+    background-color: var(--color-primary);
+    display: flex;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid var(--color-accent1);
+    position: sticky;
+    top: 0;
+}
+
+/* Mode Toggle Button */
+.mode-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 28px; /* Larger for a more playful look */
+    padding: 0;
+    
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mode-toggle:hover {
+    transform: scale(1.2);
+}
+
+/* Icon Styles for Sun/Moon */
+.mode-icon {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+    width: 40px;  /* Size adjustment for better visibility */
+    height: 40px;
+}
+
+.sun-icon {
+    color: #f7f6f2; /* Bright gold for sun */
+}
+
+.moon-icon {
+    color: #FFFAF0; /* Ivory for moon */
+}
+
+
+
+
+
+/* Logo Styles */
+.navbar-logo {
+    height: 70px; /* or any other suitable height */
+    width: auto;  /* maintain aspect ratio */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Navbar Actions */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Icon Styles */
+.navbar-icon {
+    cursor: pointer;
+    font-size: 28px;
+    color: var(--color-accent2); /* Light Peach for icons */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar-icon:hover {
+    color: var(--color-accent1); /* Vibrant Purple hover */
+    transform: scale(1.1);
+}
+
+/* Button Styles with modern hover effect */
+.navbar-button {
+    background-color: var(--color-accent2); /* Mint Green button */
+    color: var(--text-color); /* Deep Blue text */
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.navbar-button:hover {
+    background-color: var(--color-accent1); /* Vibrant Purple */
+    color: #fff; /* White text on hover */
+    transform: translateY(-3px) scale(1.05); /* Smooth modern hover effect */
+    box-shadow: 0 6px 16px rgba(162, 93, 172, 0.3); /* Deep shadow on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar-logo {
+        height: 40px;
+    }
+
+    .navbar-brand-text {
+        font-size: 1.5rem;
+    }
+
+    .navbar-icon {
+        font-size: 24px;
+    }
+
+    .navbar-button {
+        padding: 10px 22px;
+        font-size: 0.9rem;
+    }
+
+    .navbar-actions {
+        gap: 20px;
+    }
+}

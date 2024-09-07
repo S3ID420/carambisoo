@@ -1,0 +1,60 @@
+/* Wrapper to position search bar */
+.search-bar-wrapper {
+    margin-left: 20px; /* Adjust for spacing next to the logo */
+  }
+  
+  /* Search Bar Styles */
+  .search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 12px 18px;
+    background-color: var(--color-secondary); /* Light Peach */
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .search-bar:hover {
+    transform: scale(1.05); /* Cute scale effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-accent1); /* Vibrant Purple on hover */
+  }
+  
+  .search-bar:focus-within {
+    border-color: var(--color-accent2); /* Mint Green on focus */
+  }
+  
+  /* Search Icon */
+  .search-icon {
+    font-size: 20px;
+    color: var(--color-accent1); /* Vibrant Purple */
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .search-icon:hover {
+    transform: rotate(20deg); /* Cute rotate on hover */
+  }
+  
+  /* Search Input */
+  .search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+    color: var(--text-color); /* Deep Blue */
+    width: 160px;
+    font-family: 'Poppins', sans-serif;
+    transition: width 0.3s ease;
+  }
+  
+  .search-input::placeholder {
+    color: var(--color-accent2); /* Mint Green */
+  }
+  
+  .search-input:focus {
+    width: 220px; /* Expand width when typing */
+  }
+  

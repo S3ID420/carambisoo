@@ -1,0 +1,128 @@
+/* Sidebar container */
+.sidebar {
+    width: 250px;
+    background-color: var(--color-primary); /* Bright Aqua */
+    height: 100vh;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+/* Folder and category styles */
+.folder, .category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--color-secondary); /* Light Peach for folders */
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    animation: slideDown 0.3s ease-out;
+}
+
+.folder:hover, .category:hover {
+    background-color: var(--color-accent1); /* Vibrant Purple on hover */
+    color: white;
+}
+
+.folder-actions, .category-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.folder-actions svg, .category-actions svg {
+    cursor: pointer;
+    color: var(--text-color); /* Icon color */
+    transition: transform 0.2s ease;
+}
+
+.folder-actions svg:hover, .category-actions svg:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Folder icon click instead of name click */
+.folder-icon, .category-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Categories and cards styling */
+.categories {
+    padding-left: 20px; /* Tabulation for categories */
+    animation: slideDown 0.3s ease-out;
+}
+
+.cards {
+    padding-left: 40px; /* Tabulation for cards */
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Add Button */
+.add-button {
+    background-color: var(--color-accent2); /* Mint Green */
+    color: var(--text-color);
+    border: none;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: var(--color-accent1); /* Vibrant Purple on hover */
+    color: white;
+}
+
+/* Cards within a category */
+.card {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    background-color: var(--color-accent2); /* Mint Green for cards */
+    border-radius: 6px;
+    margin: 5px 0;
+    transition: background-color 0.3s ease;
+}
+
+.card svg {
+    margin-right: 10px;
+}
+
+.card:hover {
+    background-color: var(--color-accent1); /* Vibrant Purple on hover */
+    color: white;
+}
+
+/* Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+}
