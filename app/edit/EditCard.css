@@ -1,0 +1,159 @@
+/* Container for the form */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 97vh;
+  background: url("/i1.jpg") no-repeat center center; /* Background image from public folder */
+  background-size: cover; /* Ensures the image covers the whole container */
+}
+
+.wrapper {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Back button styles */
+.backButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.backButton:hover {
+  color: #D6DAC8;
+}
+
+/* Container for the form elements */
+.formContainer {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 650px;
+  
+}
+
+/* Title styling */
+.title {
+  font-size: 1.8rem;
+  color: #efbc9b;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Form group styling */
+.formGroup {
+  margin-bottom: 15px;
+}
+
+/* Label styling */
+.label {
+  display: block;
+  font-size: 1.1rem; /* Slightly larger font for better readability */
+  color: #9CAFAA; /* Updated color for the labels */
+  margin-bottom: 5px;
+  font-family: 'Arial', sans-serif; /* Changed font to make it prettier */
+  font-weight: 500; /* Added font weight for a more polished look */
+  letter-spacing: 0.5px; /* Slight spacing between letters for a more modern feel */
+}
+.colorLabel {
+  display: block;
+  font-size: 1.1rem; /* Slightly larger font for better readability */
+  color: #9CAFAA; /* Updated color for the labels */
+  margin-bottom: 5px;
+  font-family: 'Arial', sans-serif; /* Changed font to make it prettier */
+  font-weight: 500; /* Added font weight for a more polished look */
+  letter-spacing: 0.5px; /* Slight spacing between letters for a more modern feel */
+}
+
+/* Input styling */
+/* Input styling - reduce size */
+.input {
+  width: 100%; /* Matches the width of the color input */
+  padding: 8px; /* Adjust padding slightly for a smaller size */
+  font-size: 0.9rem; /* Reduced font size */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Color input styling */
+.colorInput {
+  width: 30px; /* Made the color input a square */
+  height: 30px; /* Height matches the width for a square */
+  margin:10px;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer; /* Add a pointer cursor to indicate it is clickable */
+  transition: border 0.3s ease; /* Add a smooth transition for the border */
+}
+
+
+
+/* Save button styling - unchanged, but you can adjust this too if needed */
+.saveButton {
+  display: block;
+  width: 100%;
+  padding: 10px; /* You can reduce padding here if needed */
+  background-color: #EFBC9B;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(224, 199, 220, 0.872);
+}
+
+
+.saveButton:hover {
+  background-color: #ffd5c0;
+  transform: scale(1.05);
+}
+
+/* Flashcard styles */
+.flashcard {
+  width: 300px;
+  height: 200px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.flashcard:hover {
+  transform: scale(1.1);
+}
+
+.flashcard .front {
+  background-color: #ffda76;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.flashcard .back {
+  background-color: #ff4e88;
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+.formGroupContainer{
+  display: flex;
+  justify-content: space-between
+}
