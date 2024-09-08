@@ -47,7 +47,7 @@ const EditCard = () => {
           <FaArrowLeft />
         </button>
         <div className="formContainer">
-          <h2 className="title">Edit Your Flashcard</h2>
+          <h2 className="title ">Edit Your Flashcard</h2>
           <div className="formGroup">
             <label className="label">Question:</label>
             <input

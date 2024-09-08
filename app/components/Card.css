@@ -1,129 +1,128 @@
+
 .cardContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  width: 300px;
+  height: 200px;
+  perspective: 1000px;
+  margin-bottom: 20px;
+  background-color: none;
+}
+.cardInner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+
+.flipped .cardInner {
+  transform: rotateY(180deg);
   
-  .card {
-    width: 300px;
-    height: 200px;
-    perspective: 1000px;
-    margin-bottom: 20px;
-  }
-  
-  .cardInner {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    position: relative;
-  }
-  
-  .flipped .cardInner {
-    transform: rotateY(180deg);
-  }
-  
-  .cardFace {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .cardFront {
-    background-color: #f6f6f6;
-    color: #2d4059;
-  }
-  
-  .cardBack {
-    background-color: #ffffff;
-    color: #2d4059;
-    transform: rotateY(180deg);
-  }
-  
-  .cardHeader {
-    display: flex;
-    justify-content: flex-end;
-    padding: 5px;
-    border-radius: 8px 8px 0 0;
-  }
-  
-  .cardHeaderFront {
-    background-color: #2d4059;
-  }
-  
-  .cardHeaderBack {
-    background-color: #FFB400;
-  }
-  
-  .iconButton {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 20px;
-    margin-left: 10px;
-  }
-  
-  .cardActions .iconButton {
-    background: none;
-    border: none;
-    color: #2d4059;
-    cursor: pointer;
-    font-size: 20px;
-  }
-  
-  .progressButtons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-  
-  .progressButton {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #FFB400;
-    color: white;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .progressButton:hover {
-    background-color: #f9bb2c;
-    transform: scale(1.1);
-  }
-  
-  .cardActions {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  .cardFace p {
-    margin-left: 10px;
-    margin-right: 10px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .cardFront p {
-    color: #2d4059;
-    font-size: 18px;
-  }
-  
-  .cardBack p {
-    color: #2d4059;
-    font-size: 16px;
-  }
-  
+}
+
+.cardFace {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardFront {
+  background-color: white;
+  color: var(--text-color);
+}
+
+.cardBack {
+  background-color: white;
+  color: var(--text-color);
+  transform: rotateY(180deg);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+  border-radius: 8px 8px 0 0;
+}
+
+.cardHeaderFront {
+  background-color: var(--color-accent2);
+}
+
+.cardHeaderBack {
+  background-color: var(--color-accent1);
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.cardActions .iconButton {
+  background: none;
+  border: none;
+  color: var(--color-accent1);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.progressButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.progressButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--color-accent1);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.progressButton:hover {
+  background-color: var(--color-accent2);
+  transform: scale(1.1);
+}
+
+.cardActions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.cardFace p {
+  margin: 0 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.cardFront p {
+  font-size: 18px;
+}
+
+.cardBack p {
+  font-size: 16px;
+}

@@ -1,12 +1,7 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  FaEdit,
-  FaTrashAlt,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
+import { FaEdit, FaTrashAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
 import "./Card.css"; // Ensure the CSS file is present in the same directory
 
@@ -31,8 +26,7 @@ const Card = ({ question, answer, onDelete }) => {
     const queryParams = new URLSearchParams({
       question,
       answer,
-      frontColor: "#f6f6f6",
-      backColor: "#ffffff",
+      
     }).toString();
     router.push(`/edit?${queryParams}`);
   };
@@ -43,11 +37,7 @@ const Card = ({ question, answer, onDelete }) => {
         <div className="cardInner">
           {/* Card Front */}
           <div className="cardFace cardFront" onClick={handleFlip}>
-            <div
-              className={`cardHeader ${
-                isFlipped ? "cardHeaderBack" : "cardHeaderFront"
-              }`}
-            >
+            <div className="cardHeader cardHeaderFront">
               <button className="iconButton" onClick={handleEdit}>
                 <FaEdit />
               </button>
@@ -60,11 +50,7 @@ const Card = ({ question, answer, onDelete }) => {
 
           {/* Card Back */}
           <div className="cardFace cardBack" onClick={handleFlip}>
-            <div
-              className={`cardHeader ${
-                isFlipped ? "cardHeaderBack" : "cardHeaderFront"
-              }`}
-            >
+            <div className="cardHeader cardHeaderBack">
               <Link className="iconButton" href="/edit">
                 <FaEdit />
               </Link>
@@ -82,9 +68,7 @@ const Card = ({ question, answer, onDelete }) => {
               </button>
               <button
                 onClick={handleUnknown}
-                className={`progressButton ${
-                  !isKnown && isKnown !== null ? "unknown" : ""
-                }`}
+                className={`progressButton ${!isKnown && isKnown !== null ? "unknown" : ""}`}
               >
                 Unknown
               </button>

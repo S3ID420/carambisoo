@@ -51,7 +51,7 @@
   }
   
   .search-input::placeholder {
-    color: var(--color-accent2); /* Mint Green */
+    color: white; /* Mint Green */
   }
   
   .search-input:focus {

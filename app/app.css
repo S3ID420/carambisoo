@@ -1,0 +1,28 @@
+/* Main app layout */
+.appContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  
+  
+  
+  /* Main content area below navbar */
+  .mainContent {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 60px); /* Adjusting height to account for navbar */
+  }
+  
+  /* Sidebar and cards layout */
+  .cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    flex: 1;
+  }
+  
+  
+  

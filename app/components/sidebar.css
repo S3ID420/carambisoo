@@ -1,14 +1,14 @@
 /* Sidebar container */
 .sidebar {
     width: 250px;
-    background-color: var(--color-primary); /* Bright Aqua */
     height: 100vh;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 10px;
     overflow-y: auto;
+    
+    
 }
 
 /* Folder and category styles */
@@ -17,21 +17,25 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    padding: 10px 15px;
-    font-size: 1.1rem;
+    padding: 12px 20px;
+    font-size: 1rem;
     font-weight: bold;
-    background-color: var(--color-secondary); /* Light Peach for folders */
-    border-radius: 8px;
-    margin-bottom: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: white;
+    border: 2px solid var(--color-primary); /* Softer Light Peach */
+    border-radius: 12px; /* Increased border radius for smoother look */
+    margin-bottom: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     animation: slideDown 0.3s ease-out;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Slight shadow to give depth */
 }
 
 .folder:hover, .category:hover {
-    background-color: var(--color-accent1); /* Vibrant Purple on hover */
-    color: white;
+    background-color: var(--color-accent1); /* Darker Purple on hover */
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Elevation on hover */
 }
 
+/* Folder and category actions */
 .folder-actions, .category-actions {
     display: flex;
     gap: 8px;
@@ -39,73 +43,51 @@
 
 .folder-actions svg, .category-actions svg {
     cursor: pointer;
-    color: var(--text-color); /* Icon color */
-    transition: transform 0.2s ease;
+    color: var(--text-color);
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .folder-actions svg:hover, .category-actions svg:hover {
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.15); /* Slightly larger hover effect */
 }
 
-/* Folder icon click instead of name click */
+/* Folder and category icon click */
 .folder-icon, .category-icon {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
-/* Categories and cards styling */
+/* Categories styling */
 .categories {
-    padding-left: 20px; /* Tabulation for categories */
-    animation: slideDown 0.3s ease-out;
-}
-
-.cards {
-    padding-left: 40px; /* Tabulation for cards */
+    padding-left: 25px; /* Increased tabulation */
     animation: slideDown 0.3s ease-out;
 }
 
 /* Add Button */
 .add-button {
-    background-color: var(--color-accent2); /* Mint Green */
+    background-color: var(--color-accent2) ; /* Darker Mint Green */
     color: var(--text-color);
     border: none;
-    padding: 8px 12px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    font-size: 0.9rem;
+    padding: 10px 16px;
+    margin-bottom: 15px;
+    border-radius: 8px; /* More rounded button */
+    font-size: 1rem;
     display: flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .add-button:hover {
     background-color: var(--color-accent1); /* Vibrant Purple on hover */
     color: white;
+    transform: scale(1.05); /* Slightly larger on hover */
 }
 
-/* Cards within a category */
-.card {
-    display: flex;
-    align-items: center;
-    padding: 8px 15px;
-    background-color: var(--color-accent2); /* Mint Green for cards */
-    border-radius: 6px;
-    margin: 5px 0;
-    transition: background-color 0.3s ease;
-}
 
-.card svg {
-    margin-right: 10px;
-}
-
-.card:hover {
-    background-color: var(--color-accent1); /* Vibrant Purple on hover */
-    color: white;
-}
 
 /* Animation */
 @keyframes slideDown {
