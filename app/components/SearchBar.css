@@ -1,10 +1,9 @@
-/* Wrapper to position search bar */
+* Search Bar Styles */
 .search-bar-wrapper {
     margin-left: 20px; /* Adjust for spacing next to the logo */
-  }
-  
-  /* Search Bar Styles */
-  .search-bar {
+}
+
+.search-bar {
     position: relative;
     display: flex;
     align-items: center;
@@ -14,32 +13,32 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 2px solid transparent;
-  }
-  
-  .search-bar:hover {
+}
+
+.search-bar:hover {
     transform: scale(1.05); /* Cute scale effect on hover */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     border-color: var(--color-accent1); /* Vibrant Purple on hover */
-  }
-  
-  .search-bar:focus-within {
+}
+
+.search-bar:focus-within {
     border-color: var(--color-accent2); /* Mint Green on focus */
-  }
-  
-  /* Search Icon */
-  .search-icon {
+}
+
+/* Search Icon */
+.search-icon {
     font-size: 20px;
     color: var(--color-accent1); /* Vibrant Purple */
     margin-right: 10px;
     transition: transform 0.3s ease;
-  }
-  
-  .search-icon:hover {
+}
+
+.search-icon:hover {
     transform: rotate(20deg); /* Cute rotate on hover */
-  }
-  
-  /* Search Input */
-  .search-input {
+}
+
+/* Search Input */
+.search-input {
     border: none;
     outline: none;
     background: transparent;
@@ -48,13 +47,49 @@
     width: 160px;
     font-family: 'Poppins', sans-serif;
     transition: width 0.3s ease;
-  }
-  
-  .search-input::placeholder {
+}
+
+.search-input::placeholder {
     color: white; /* Mint Green */
-  }
-  
-  .search-input:focus {
+}
+
+.search-input:focus {
     width: 220px; /* Expand width when typing */
-  }
-  
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .search-bar-wrapper {
+        margin-left: 10px; /* Adjust for smaller screens */
+    }
+
+    .search-bar {
+        padding: 10px 15px;
+    }
+
+    .search-input {
+        width: 120px; /* Smaller width on small screens */
+    }
+
+    .search-input:focus {
+        width: 180px; /* Adjust expanded width */
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar-wrapper {
+        margin-left: 5px; /* Further adjustment for very small screens */
+    }
+
+    .search-bar {
+        padding: 8px 12px;
+    }
+
+    .search-input {
+        width: 100px; /* Further reduced width on very small screens */
+    }
+
+    .search-input:focus {
+        width: 150px; /* Adjust expanded width */
+    }
+}

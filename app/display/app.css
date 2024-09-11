@@ -1,0 +1,171 @@
+/* Main app layout */
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Main content area below navbar */
+.mainContent {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 60px); /* Adjusting height to account for navbar */
+}
+
+/* Sidebar and cards layout */
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  flex: 1;
+}
+
+/* Styling for the <p> element when no category is selected */
+.cardsContainer p {
+  font-size: 1.2rem;
+  color: #555; /* Subtle color for text */
+  margin: auto; /* Center the text */
+  text-align: center; /* Center align */
+  opacity: 0.8;
+  animation: fadeIn 0.5s ease-in-out; /* Add fade-in effect */
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: var(--color-secondary);
+  padding: 20px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.modal h2 {
+  color: var(--text-color);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.modal input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  background-color: var(--color-accent1);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.modal input:focus {
+  border-color: var(--color-accent2);
+  outline: none;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-actions button:hover {
+  background-color: var(--color-accent2);
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.modal-actions button[type="submit"] {
+  background-color: var(--color-primary);
+}
+
+.modal-actions button[type="submit"]:hover {
+  background-color: var(--color-accent2);
+}
+
+.modal-actions button[type="button"] {
+  background-color: var(--color-accent1);
+  color: var(--text-color);
+}
+
+.modal-actions button[type="button"]:hover {
+  background-color: var(--color-accent2);
+  color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments for cards */
+@media (max-width: 1200px) {
+  .cardsContainer {
+      gap: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .cardsContainer {
+      gap: 10px;
+      padding: 15px;
+  }
+  .cardsContainer p {
+      display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardsContainer {
+      gap: 8px;
+      padding: 10px;
+      justify-content: center;
+  }
+  .cardsContainer p {
+      display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .cardsContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 5px;
+  }
+  .cardsContainer p {
+      display: none;
+  }
+}

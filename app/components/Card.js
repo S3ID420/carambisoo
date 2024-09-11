@@ -22,14 +22,7 @@ const Card = ({ question, answer, onDelete }) => {
     setIsKnown(false);
   };
 
-  const handleEdit = () => {
-    const queryParams = new URLSearchParams({
-      question,
-      answer,
-      
-    }).toString();
-    router.push(`/edit?${queryParams}`);
-  };
+ 
 
   return (
     <div className="cardContainer">
@@ -38,9 +31,9 @@ const Card = ({ question, answer, onDelete }) => {
           {/* Card Front */}
           <div className="cardFace cardFront" onClick={handleFlip}>
             <div className="cardHeader cardHeaderFront">
-              <button className="iconButton" onClick={handleEdit}>
+              <Link className="iconButton" href='/edit'>
                 <FaEdit />
-              </button>
+              </Link>
               <button className="iconButton" onClick={onDelete}>
                 <FaTrashAlt />
               </button>

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 import { FaSearch } from 'react-icons/fa';
+
 import './SearchBar.css'; // Import the CSS with creative animations
 
 const SearchBar = () => {

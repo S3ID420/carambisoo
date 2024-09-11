@@ -13,6 +13,7 @@ const Sidebar = ({ folders, onCategorySelect, onAddFolder, onAddCategory }) => {
     }));
   };
 
+
   return (
     <div className="sidebar">
       <button className="add-button" onClick={onAddFolder}>
@@ -37,7 +38,9 @@ const Sidebar = ({ folders, onCategorySelect, onAddFolder, onAddCategory }) => {
                   <div className="category" onClick={() => onCategorySelect({ folderIndex, categoryIndex })}>
                     + {category.name}
                   </div>
+                  
                 </div>
+                
               ))}
             </div>
           )}
