@@ -37,12 +37,12 @@ const EditCard = () => {
   };
 
   const handleBack = () => {
-    router.push("/");
+    router.push("/display");
   };
 
   return (
     <div className="wrapper">
-      <div className="container">
+     
         <button className="backButton" onClick={handleBack}>
           <FaArrowLeft />
         </button>
@@ -110,7 +110,7 @@ const EditCard = () => {
           </button>
         </div>
       </div>
-    </div>
+    
   );
 };
 
