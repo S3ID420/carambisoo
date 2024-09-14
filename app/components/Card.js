@@ -70,14 +70,7 @@ const Card = ({ question, answer, onDelete }) => {
         </div>
       </div>
 
-      <div className="cardActions">
-        <button className="iconButton">
-          <FaChevronLeft />
-        </button>
-        <button className="iconButton">
-          <FaChevronRight />
-        </button>
-      </div>
+     
     </div>
   );
 };

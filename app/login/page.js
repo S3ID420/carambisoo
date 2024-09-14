@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import "./login.css"; // Independent CSS file for login page
+import Link from "next/link";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -34,16 +35,36 @@ const Login = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
     } else {
-      console.log("Form Submitted", formData);
+      try {
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+  
+        const data = await res.json();
+  
+        if (res.ok) {
+          console.log("Login successful:", data.message);
+          // You can redirect the user or show a success message here
+        } else {
+          console.log("Error:", data.message);
+        }
+      } catch (error) {
+        console.log("Something went wrong:", error);
+      }
     }
   };
+  
 
   return (
     <div className="login-container">
@@ -83,7 +104,7 @@ const Login = () => {
         </button>
         <div className="no-account">
           <p>
-            Don't have an account? <a href="/signup">Sign up here</a>
+            Don't have an account? <Link href="/signUp">Sign up here</Link>
           </p>
         </div>
       </form>

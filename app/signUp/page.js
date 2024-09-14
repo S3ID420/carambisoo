@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import "./signUp.css"; // Make sure this CSS file exists
+import Link from "next/link";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -46,16 +47,36 @@ const SignUp = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
     } else {
-      console.log("Form Submitted", formData);
+      try {
+        const res = await fetch("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+  
+        const data = await res.json();
+  
+        if (res.ok) {
+          console.log("User registered:", data);
+          // Redirect or show success message
+        } else {
+          console.log("Error:", data.message);
+        }
+      } catch (error) {
+        console.log("Something went wrong:", error);
+      }
     }
   };
+  
 
   return (
     <div className="signup-container">
@@ -123,7 +144,7 @@ const SignUp = () => {
         </button>
         <div className="already-account">
           <p>
-            Already have an account? <a href="/login">Login here</a>
+            Already have an account? <Link href="/login">Login here</Link>
           </p>
         </div>
       </form>

@@ -50,7 +50,7 @@ const NavbarComponent = () => {
             <FaHeart className="navbar-icon" />
           </NavItem>
           <NavItem>
-            <Link href="/signin" passHref>
+            <Link href="/signUp" passHref>
               <Button className="navbar-button">Sign In</Button>
             </Link>
           </NavItem>

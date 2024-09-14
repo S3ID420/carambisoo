@@ -67,7 +67,7 @@
 
 /* Add Button */
 .add-button {
-    background-color: var(--color-accent2); /* Darker Mint Green */
+    background-color: var(--color-accent1); /* Darker Mint Green */
     color: var(--text-color);
     border: none;
     padding: 10px 16px;
@@ -82,7 +82,7 @@
 }
 
 .add-button:hover {
-    background-color: var(--color-accent1); /* Vibrant Purple on hover */
+    background-color: var(--color-accent2); /* Vibrant Purple on hover */
     color: white;
     transform: scale(1.05); /* Slightly larger on hover */
 }
