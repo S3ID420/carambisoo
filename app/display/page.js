@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react';
 
 export default function Display() {
-  const { data: session } = useSession(); 
+  const { data: session } = useSession();
   const [folders, setFolders] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -33,7 +33,7 @@ export default function Display() {
     try {
       const response = await axios.get(`/api/categories?folderId=${folderId}`);
       const categories = response.data;
-  
+
       // Fetch cards for each category
       const categoriesWithCards = await Promise.all(
         categories.map(async (category) => {
@@ -44,14 +44,14 @@ export default function Display() {
           };
         })
       );
-  
+
       return categoriesWithCards; // Return all categories, including those without cards
     } catch (error) {
       console.error(`Error fetching categories for folder ${folderId}:`, error);
       return [];
     }
   };
-  
+
   // Fetch Cards
   const fetchCardsForCategory = async (categoryId) => {
     try {
@@ -62,16 +62,16 @@ export default function Display() {
       return [];
     }
   };
-  
+
 
   // Combined function to fetch both folders and their respective categories
   const fetchFoldersAndCategories = async (userId) => {
     const foldersData = await fetchFolders(userId);
-  
+
     const foldersWithCategoriesAndCards = await Promise.all(
       foldersData.map(async (folder) => {
         const categories = await fetchCategoriesForFolder(folder._id);
-  
+
         const categoriesWithCards = await Promise.all(
           categories.map(async (category) => {
             const cards = await fetchCardsForCategory(category._id);
@@ -81,17 +81,17 @@ export default function Display() {
             };
           })
         );
-  
+
         return {
           ...folder,
           categories: categoriesWithCards,
         };
       })
     );
-  
+
     setFolders(foldersWithCategoriesAndCards);
   };
-  
+
 
   useEffect(() => {
     if (session?.user?.id) {
@@ -134,6 +134,17 @@ export default function Display() {
       } catch (error) {
         console.error('Error creating folder:', error);
       }
+    } else if (type === 'rename-folder' && newItemName) {
+      const folderId = folders[folderIndex]._id;
+      try {
+        await axios.put(`/api/folders/${folderId}`, { name: newItemName });
+        const updatedFolders = [...folders];
+        updatedFolders[folderIndex].name = newItemName; // Update the folder name in the state
+        setFolders(updatedFolders);
+        handleClose();
+      } catch (error) {
+        console.error(`Error renaming folder ${folderId}:`, error);
+      }
     } else if (type === 'category' && newItemName) {
       const folderId = folders[folderIndex]._id;
       try {
@@ -158,6 +169,26 @@ export default function Display() {
       }
     }
   };
+  // Handle folder deletion
+  const handleDeleteFolder = async (folderIndex) => {
+    const folderId = folders[folderIndex]._id;
+    try {
+      await axios.delete(`/api/folders/${folderId}`);
+      const updatedFolders = folders.filter((_, index) => index !== folderIndex);
+      setFolders(updatedFolders); // Update folders state after deletion
+    } catch (error) {
+      console.error(`Error deleting folder ${folderId}:`, error);
+    }
+  };
+
+  // Handle folder renaming
+  const handleRenameFolder = (folderIndex) => {
+    setModalTitle('Rename Folder');
+    setModalData({ type: 'rename-folder', folderIndex });
+    setNewItemName(folders[folderIndex].name); // Prepopulate current folder name
+    setOpenModal(true);
+  };
+
 
   const modalOverlayStyle = {
     position: 'fixed',
@@ -222,6 +253,8 @@ export default function Display() {
           onAddFolder={() => handleAdd('folder')}
           onAddCategory={(folderIndex) => handleAdd('category', folderIndex)}
           onAddCard={(folderIndex, categoryIndex) => handleAdd('card', folderIndex, categoryIndex)}
+          onDeleteFolder={(folderIndex) => handleDeleteFolder(folderIndex)} // Add delete folder handler
+          onRenameFolder={(folderIndex) => handleRenameFolder(folderIndex)} // Add rename folder handler
         />
 
         <div className="cardsContainer">
@@ -240,6 +273,17 @@ export default function Display() {
         <div style={modalOverlayStyle}>
           <div style={modalStyle}>
             <h2>{modalTitle}</h2>
+            {/* Input for renaming folder */}
+            {modalData.type === 'rename-folder' && (
+              <input
+                style={inputStyle}
+                type="text"
+                value={newItemName} // Pre-filled folder name
+                onChange={(e) => setNewItemName(e.target.value)} // Update state as user types
+                placeholder="New Folder Name"
+              />
+            )}
+
             {modalData.type === 'card' && (
               <>
                 <input
