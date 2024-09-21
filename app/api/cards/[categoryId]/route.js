@@ -11,11 +11,7 @@ export async function GET(req, { params }) {
   try {
     const cards = await Card.find({ category: categoryId });
 
-    if (!cards.length) {
-      return NextResponse.json({ message: 'No cards found for this category' }, { status: 404 });
-    }
-
-    return NextResponse.json(cards, { status: 200 });
+    return NextResponse.json(cards, { status: 200 }); // Always return cards, even if empty
   } catch (error) {
     console.error('Error fetching cards:', error);
     return NextResponse.json({ message: 'Error fetching cards' }, { status: 500 });

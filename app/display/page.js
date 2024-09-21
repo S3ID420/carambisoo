@@ -29,12 +29,23 @@ export default function Display() {
     }
   };
 
-
-  // Separate function to fetch categories for each folder
   const fetchCategoriesForFolder = async (folderId) => {
     try {
-      const response = await axios.get(`/api/categories/${folderId}`);
-      return response.data;
+      const response = await axios.get(`/api/categories?folderId=${folderId}`);
+      const categories = response.data;
+  
+      // Fetch cards for each category
+      const categoriesWithCards = await Promise.all(
+        categories.map(async (category) => {
+          const cardsResponse = await axios.get(`/api/cards/${category._id}`);
+          return {
+            ...category,
+            cards: cardsResponse.data, // This will be an empty array if no cards are found
+          };
+        })
+      );
+  
+      return categoriesWithCards; // Return all categories, including those without cards
     } catch (error) {
       console.error(`Error fetching categories for folder ${folderId}:`, error);
       return [];
