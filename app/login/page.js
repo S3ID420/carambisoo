@@ -1,67 +1,31 @@
 "use client";
 import React, { useState } from "react";
-import "./login.css"; // Independent CSS file for login page
+import { signIn } from 'next-auth/react';
 import Link from "next/link";
+import "./login.css"; // Ensure this CSS file exists
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-  const [formErrors, setFormErrors] = useState({});
-
-  // Handle input change
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  // Validate form data
-  const validateForm = () => {
-    const errors = {};
-
-    if (!formData.email.trim()) {
-      errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = "Email address is invalid";
-    }
-
-    if (!formData.password.trim()) {
-      errors.password = "Password is required";
-    }
-
-    return errors;
-  };
-
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const errors = validateForm();
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-    } else {
-      try {
-        const res = await fetch("/api/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
+    const result = await signIn('credentials', {
+      redirect: false, // Prevent automatic redirect
+      email,
+      password,
+    });
   
-        const data = await res.json();
+    console.log('Login result:', result); // Add this for debugging
   
-        if (res.ok) {
-          console.log("Login successful:", data.message);
-          // You can redirect the user or show a success message here
-        } else {
-          console.log("Error:", data.message);
-        }
-      } catch (error) {
-        console.log("Something went wrong:", error);
-      }
+    if (result?.error) {
+      // Set error if login fails
+      setError(result.error);
+    } else if (result?.ok) {
+      // Redirect if login is successful
+      window.location.href = '/display';
     }
   };
   
@@ -71,32 +35,26 @@ const Login = () => {
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
 
+        {error && <p className="error-message">{error}</p>}
+
         <div className="form-group">
           <label>Email</label>
           <input
             type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className={formErrors.email ? "input-error" : ""}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
-          {formErrors.email && (
-            <p className="error-message">{formErrors.email}</p>
-          )}
         </div>
 
         <div className="form-group">
           <label>Password</label>
           <input
             type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className={formErrors.password ? "input-error" : ""}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          {formErrors.password && (
-            <p className="error-message">{formErrors.password}</p>
-          )}
         </div>
 
         <button type="submit" className="login-button">
@@ -104,7 +62,7 @@ const Login = () => {
         </button>
         <div className="no-account">
           <p>
-            Don't have an account? <Link href="/signUp">Sign up here</Link>
+            Don't have an account? <Link href="/signup">Sign up here</Link>
           </p>
         </div>
       </form>

@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { FaFolder, FaFolderOpen, FaPlus, FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaFolder, FaFolderOpen, FaPlus, FaEdit, FaTrashAlt, FaPlusSquare, FaMinusSquare } from "react-icons/fa";
 import "./sidebar.css"; // Ensure the CSS file is present in the same directory
 
-const Sidebar = ({ folders, onCategorySelect, onAddFolder, onAddCategory }) => {
+const Sidebar = ({ folders, onCategorySelect, onAddFolder, onAddCategory, onAddCard, onDeleteCard }) => {
   const [openFolders, setOpenFolders] = useState({});
 
   const toggleFolder = (folderIndex) => {
@@ -12,7 +12,6 @@ const Sidebar = ({ folders, onCategorySelect, onAddFolder, onAddCategory }) => {
       [folderIndex]: !prevState[folderIndex],
     }));
   };
-
 
   return (
     <div className="sidebar">
@@ -35,12 +34,18 @@ const Sidebar = ({ folders, onCategorySelect, onAddFolder, onAddCategory }) => {
             <div className="categories">
               {folder.categories.map((category, categoryIndex) => (
                 <div key={categoryIndex}>
-                  <div className="category" onClick={() => onCategorySelect({ folderIndex, categoryIndex })}>
-                    + {category.name}
+                  <div className="category-header">
+                    <div className="category" onClick={() => onCategorySelect({ folderIndex, categoryIndex })}>
+                      + {category.name}
+                      <div className="category-actions">
+                      <FaPlusSquare onClick={() => onAddCard(folderIndex, categoryIndex)} title="Add Card" />
+                      <FaMinusSquare onClick={() => onDeleteCard(folderIndex, categoryIndex)} title="Delete Card" />
+                    </div>
+                    </div>
+                    
                   </div>
                   
                 </div>
-                
               ))}
             </div>
           )}
