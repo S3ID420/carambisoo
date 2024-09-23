@@ -1,23 +1,25 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Navbar, NavbarBrand, Nav, NavItem, Button } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Link from 'next/link';
-import { FaHeart } from 'react-icons/fa'; // Keeping the cute heart icon
-import { RiSunFill, RiMoonClearFill } from 'react-icons/ri'; // New playful icons
+import { FaHeart, FaUser } from 'react-icons/fa';
+import { RiSunFill, RiMoonClearFill } from 'react-icons/ri';
+import { useSession, signOut } from 'next-auth/react'; // Import useSession and signOut
+
 import './navbar.css';
-import SearchBar from './SearchBar'; // Import the updated SearchBar component
+import SearchBar from './SearchBar';
 
 const NavbarComponent = () => {
+  const { data: session } = useSession(); // Get session data
   const [darkMode, setDarkMode] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false); // For profile dropdown
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-    if (!darkMode) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
+    document.documentElement.setAttribute('data-theme', darkMode ? 'light' : 'dark');
   };
+
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen); // Toggle dropdown
 
   useEffect(() => {
     const theme = localStorage.getItem('theme');
@@ -53,6 +55,25 @@ const NavbarComponent = () => {
             <Link href="/login" passHref>
               <Button className="navbar-button">Sign In</Button>
             </Link>
+            {session ? (
+              <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+                <DropdownToggle tag="span" className="navbar-icon">
+                  <FaUser />
+                </DropdownToggle>
+                <DropdownMenu end>
+                  <DropdownItem>
+                    
+                  </DropdownItem>
+                  <DropdownItem onClick={() => signOut()}>
+                    Log Out
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            ) : (
+              <Link href="/signUp" passHref>
+                <Button className="navbar-button">Sign In</Button>
+              </Link>
+            )}
           </NavItem>
           <NavItem>
             {/* Dark/Light Mode Toggle */}
