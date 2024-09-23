@@ -11,12 +11,12 @@ html, body {
     align-items: center;
     height: 100vh; /* Use viewport height to cover the entire screen */
     width: 100vw; /* Ensure it covers the full width */
-    background-image: url('/i4.jpg'); /* Reference the image in the public folder */
     background-size: cover; /* Ensure the background covers the entire container */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
+    background-color: #9CAFAA;
   }
   
   .signup-form {

@@ -1,9 +1,11 @@
-"use client";
+"use client"; // Mark the component to be rendered on the client side
 import React, { useState } from "react";
-import "./signUp.css"; // Make sure this CSS file exists
+import { useRouter } from "next/navigation"; // Correct import for useRouter in Next.js 13+ (app directory)
 import Link from "next/link";
+import "./signUp.css"; // Your CSS file
 
 const SignUp = () => {
+  const router = useRouter(); // Initialize router for client-side navigation
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -49,7 +51,7 @@ const SignUp = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
@@ -62,12 +64,13 @@ const SignUp = () => {
           },
           body: JSON.stringify(formData),
         });
-  
+
         const data = await res.json();
-  
+
         if (res.ok) {
           console.log("User registered:", data);
-          // Redirect or show success message
+          // Redirect to the login page after successful sign-up
+          router.push("/login");
         } else {
           console.log("Error:", data.message);
         }
@@ -76,7 +79,6 @@ const SignUp = () => {
       }
     }
   };
-  
 
   return (
     <div className="signup-container">

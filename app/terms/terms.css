@@ -1,0 +1,68 @@
+/* styles/Terms.css */
+
+
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: var(--text-color); /* Use text color variable */
+    background-color: var(--color-accent2); /* Background color */
+  }
+  
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    min-height: 100vh; /* Full viewport height */
+    padding: 40px; /* Padding around the content */
+    text-align: center; /* Center text and headings */
+  }
+  
+  .heading {
+    color: var(--color-primary); /* Dark purple */
+    margin-bottom: 20px; /* Space below the main heading */
+    font-size: 2.5rem; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase letters */
+    position: relative; /* For pseudo-elements */
+    display: inline-block; /* Align with pseudo-elements */
+  }
+  
+  .heading::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 5px; /* Height of the underline */
+    background: var(--color-secondary); /* Pink underline */
+    transform: translateY(-50%);
+    z-index: -1; /* Behind the text */
+  }
+  
+  .subheading {
+    color: var(--color-secondary); /* Pink */
+    margin-top: 30px; /* Space above each subheading */
+    margin-bottom: 15px; /* Space below each subheading */
+    font-size: 1.5rem; /* Slightly larger font size */
+  }
+  
+  
+  .paragraph {
+    color: var(--text-color); /* Dark blue */
+    line-height: 1.6;
+    margin-bottom: 20px; /* Space below paragraphs */
+  }
+  
+  .link {
+    color: var(--color-primary); /* Dark purple */
+    text-decoration: none;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+    
+  }
+  
