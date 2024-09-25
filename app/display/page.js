@@ -145,7 +145,19 @@ export default function Display() {
       } catch (error) {
         console.error(`Error renaming folder ${folderId}:`, error);
       }
-    } else if (type === 'category' && newItemName) {
+    } else if (type === 'rename-category' && newItemName) {
+      const categoryId = folders[folderIndex].categories[categoryIndex]._id;
+      try {
+        await axios.put(`/api/cat/${categoryId}`, { name: newItemName });
+        const updatedFolders = [...folders];
+        updatedFolders[folderIndex].categories[categoryIndex].name = newItemName; // Update the category name in the state
+        setFolders(updatedFolders);
+        handleClose();
+      } catch (error) {
+        console.error(`Error renaming category ${categoryId}:`, error);
+      }
+    }
+    else if (type === 'category' && newItemName) {
       const folderId = folders[folderIndex]._id;
       try {
         const response = await axios.post('/api/categories', { name: newItemName, folderId });
@@ -188,6 +200,24 @@ export default function Display() {
     setNewItemName(folders[folderIndex].name); // Prepopulate current folder name
     setOpenModal(true);
   };
+  const handleDeleteCategory = async (folderIndex, categoryIndex) => {
+    const categoryId = folders[folderIndex].categories[categoryIndex]._id;
+    try {
+      await axios.delete(`/api/cat/${categoryId}`);
+      const updatedFolders = [...folders];
+      updatedFolders[folderIndex].categories.splice(categoryIndex, 1); // Remove the category from the array
+      setFolders(updatedFolders); // Update state after deletion
+    } catch (error) {
+      console.error(`Error deleting category ${categoryId}:`, error);
+    }
+  };
+  const handleRenameCategory = (folderIndex, categoryIndex) => {
+    setModalTitle('Rename Category');
+    setModalData({ type: 'rename-category', folderIndex, categoryIndex });
+    setNewItemName(folders[folderIndex].categories[categoryIndex].name); // Prepopulate current category name
+    setOpenModal(true);
+  };
+
 
 
   const modalOverlayStyle = {
@@ -254,7 +284,9 @@ export default function Display() {
           onAddCategory={(folderIndex) => handleAdd('category', folderIndex)}
           onAddCard={(folderIndex, categoryIndex) => handleAdd('card', folderIndex, categoryIndex)}
           onDeleteFolder={(folderIndex) => handleDeleteFolder(folderIndex)} // Add delete folder handler
-          onRenameFolder={(folderIndex) => handleRenameFolder(folderIndex)} // Add rename folder handler
+          onRenameFolder={(folderIndex) => handleRenameFolder(folderIndex)}
+          onDeleteCategory={(folderIndex, categoryIndex) => handleDeleteCategory(folderIndex, categoryIndex)}
+          onRenameCategory={(folderIndex, categoryIndex) => handleRenameCategory(folderIndex, categoryIndex)} // Add rename folder handler
         />
 
         <div className="cardsContainer">
@@ -281,6 +313,15 @@ export default function Display() {
                 value={newItemName} // Pre-filled folder name
                 onChange={(e) => setNewItemName(e.target.value)} // Update state as user types
                 placeholder="New Folder Name"
+              />
+            )}
+            {modalData.type === 'rename-category' && (
+              <input
+                style={inputStyle}
+                type="text"
+                value={newItemName} // Pre-filled folder name
+                onChange={(e) => setNewItemName(e.target.value)} // Update state as user types
+                placeholder="New Category Name"
               />
             )}
 

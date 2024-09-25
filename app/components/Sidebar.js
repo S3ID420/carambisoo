@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FaFolder, FaFolderOpen, FaPlus, FaEdit, FaTrashAlt, FaPlusSquare, FaMinusSquare } from "react-icons/fa";
 import "./sidebar.css"; // Ensure the CSS file is present in the same directory
 
-const Sidebar = ({ folders, onCategorySelect, onAddFolder,onDeleteFolder,onRenameFolder, onAddCategory, onAddCard, onDeleteCard }) => {
+const Sidebar = ({ folders, onCategorySelect, onAddFolder,onDeleteFolder,onRenameFolder, onAddCategory, onAddCard,  onDeleteCategory,onRenameCategory }) => {
   const [openFolders, setOpenFolders] = useState({});
 
   const toggleFolder = (folderIndex) => {
@@ -39,7 +39,8 @@ const Sidebar = ({ folders, onCategorySelect, onAddFolder,onDeleteFolder,onRenam
                       + {category.name}
                       <div className="category-actions">
                       <FaPlusSquare onClick={() => onAddCard(folderIndex, categoryIndex)} title="Add Card" />
-                      <FaMinusSquare onClick={() => onDeleteCard(folderIndex, categoryIndex)} title="Delete Card" />
+                      <FaMinusSquare onClick={() => onDeleteCategory(folderIndex, categoryIndex)} title="Delete Category" />
+                      <FaEdit onClick={()=> onRenameCategory(folderIndex, categoryIndex)} title="Rename Category" />
                     </div>
                     </div>
                     

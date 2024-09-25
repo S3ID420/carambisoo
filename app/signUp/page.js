@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation"; // Correct import for useRouter in Next.js 13+ (app directory)
 import Link from "next/link";
 import "./signUp.css"; // Your CSS file
+import axios from "axios";
 
 const SignUp = () => {
   const router = useRouter(); // Initialize router for client-side navigation
@@ -48,37 +49,27 @@ const SignUp = () => {
     return errors;
   };
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ // Handle form submission
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const errors = validateForm();
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-    } else {
-      try {
-        const res = await fetch("/api/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-
-        const data = await res.json();
-
-        if (res.ok) {
-          console.log("User registered:", data);
-          // Redirect to the login page after successful sign-up
-          router.push("/login");
-        } else {
-          console.log("Error:", data.message);
-        }
-      } catch (error) {
-        console.log("Something went wrong:", error);
-      }
+  const errors = validateForm();
+  if (Object.keys(errors).length > 0) {
+    setFormErrors(errors);
+  } else {
+    try {
+      // Create a new object without confirmPassword
+      const { confirmPassword, ...dataToSend } = formData; // Destructure to exclude confirmPassword
+      const response = await axios.post("/api/register", dataToSend);
+      console.log("User registered:", response.data);
+      // Redirect to the login page after successful sign-up
+      router.push("/login");
+    } catch (error) {
+      console.log("Something went wrong:", error);
     }
-  };
+  }
+};
+
 
   return (
     <div className="signup-container">

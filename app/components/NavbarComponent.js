@@ -52,9 +52,7 @@ const NavbarComponent = () => {
             <FaHeart className="navbar-icon" />
           </NavItem>
           <NavItem>
-            <Link href="/login" passHref>
-              <Button className="navbar-button">Sign In</Button>
-            </Link>
+            
             {session ? (
               <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
                 <DropdownToggle tag="span" className="navbar-icon">

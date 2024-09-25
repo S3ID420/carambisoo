@@ -1,54 +1,73 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import AdminLayout from "../components/AdminLayout";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { Table, Button, Container, Row, Col, Spinner } from 'reactstrap';
+import axios from 'axios';
+import './admin.css';  // Import the CSS file
 
-const AdminDashboard = () => {
-  const [stats, setStats] = useState({
-    categories: 0,
-    folders: 0,
-    flashcards: 0,
-    users: 0,
-  });
-
+export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get('/api/users');
+      setUsers(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch('/admin/api/users');
-        const data = await res.json();
-        setUsers(data);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    };
-
     fetchUsers();
   }, []);
 
-  return (
-    <AdminLayout>
-      <h1>Admin Dashboard</h1>
-      <div className="dashboard-stats">
-        <div className="stat-card">
-          <h3>Categories</h3>
-          <p>{stats.categories}</p>
-        </div>
-        <div className="stat-card">
-          <h3>Folders</h3>
-          <p>{stats.folders}</p>
-        </div>
-        <div className="stat-card">
-          <h3>Flashcards</h3>
-          <p>{stats.flashcards}</p>
-        </div>
-        <div className="stat-card">
-          <h3>Users</h3>
-          <p>{stats.users}</p>
-        </div>
-      </div>
-    </AdminLayout>
-  );
-};
+  const handleDeleteUser = async (userId) => {
+    try {
+      await axios.delete(`/api/users/${userId}`);
+      setUsers(users.filter(user => user._id !== userId)); // Use _id here
+    } catch (error) {
+      console.error(`Error deleting user ${userId}:`, error);
+    }
+  };
 
-export default AdminDashboard;
+  return (
+    <Container className="admin-dashboard">
+      <Row className="mb-4">
+        <Col>
+          <h2>Admin Dashboard</h2>
+        </Col>
+      </Row>
+
+      {loading ? (
+        <Spinner color="primary" className="spinner" />
+      ) : (
+        <Table striped>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>UserName</th>
+              <th>Email</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={user._id}>
+                <th scope="row">{index + 1}</th>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>
+                  <Button color="secondary" onClick={() => handleDeleteUser(user._id)} className="ml-2">
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
+    </Container>
+  );
+}
