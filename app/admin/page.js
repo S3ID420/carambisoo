@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Container, Row, Col, Spinner } from 'reactstrap';
+import { Container, Row, Col, Card, CardBody, CardTitle, CardText, Button, Spinner } from 'reactstrap';
 import axios from 'axios';
 import './admin.css';  // Import the CSS file
 
@@ -43,30 +43,21 @@ export default function AdminDashboard() {
       {loading ? (
         <Spinner color="primary" className="spinner" />
       ) : (
-        <Table striped>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>UserName</th>
-              <th>Email</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => (
-              <tr key={user._id}>
-                <th scope="row">{index + 1}</th>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
-                <td>
-                  <Button color="secondary" onClick={() => handleDeleteUser(user._id)} className="ml-2">
+        <Row>
+          {users.map((user) => (
+            <Col sm="12" md="6" lg="4" key={user._id} className="mb-4">
+              <Card className="user-card">
+                <CardBody>
+                  <CardTitle tag="h5">{user.username}</CardTitle>
+                  <CardText>{user.email}</CardText>
+                  <Button color="danger" onClick={() => handleDeleteUser(user._id)}>
                     Delete
                   </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+                </CardBody>
+              </Card>
+            </Col>
+          ))}
+        </Row>
       )}
     </Container>
   );

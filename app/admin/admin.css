@@ -16,65 +16,38 @@ body {
     color: #0d6efd;
   }
   
-  .table {
-    margin-top: 20px;
-    background: #fff;
+  .user-card {
+    transition: transform 0.2s ease;
+    border: 1px solid #dee2e6;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* To give rounded corners to the table */
-  }
-  
-  .table th,
-  .table td {
-    padding: 12px;
-    text-align: center;
-  }
-  
-  .table th {
-    background: purple;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .table-striped tbody tr {
-    transition: background-color 0.3s ease;
-  }
-  
-  .table-striped tbody tr:hover {
-    background-color: rgba(0, 123, 255, 0.1);
-  }
-  
-  .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f8f9fa;
-  }
-  
-  .btn-secondary {
-    background-color: #6c757d;
-    border: none;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #5a6268;
-    transform: translateY(-3px);
-  }
-  
+}
+
+.user-card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    color: #0d6efd;
+}
+
+.card-text {
+    color: #555;
+}
+
   .spinner {
     display: block;
     margin: 0 auto;
     margin-top: 50px;
   }
   
-  /* Media Queries for Responsiveness */
-  @media (max-width: 768px) {
-    h2 {
-      font-size: 2rem;
+@media (max-width: 768px) {
+    .user-card {
+        margin: 0 auto;
     }
-    
-    .table th,
-    .table td {
-      padding: 8px;
-    }
-  }
+}
+  
+  
+  
+ 
   
