@@ -24,11 +24,20 @@ const Login = () => {
       // Set error if login fails
       setError(result.error);
     } else if (result?.ok) {
-      // Redirect if login is successful
-      window.location.href = '/display';
+      // Fetch session to check if the logged-in user is an admin
+      const res = await fetch('/api/auth/session');
+      const session = await res.json();
+
+      // Check if the logged-in user is the admin
+      if (session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+        // Redirect to the admin dashboard
+        window.location.href = '/admin';
+      } else {
+        // Otherwise, redirect to the display page
+        window.location.href = '/display';
+      }
     }
   };
-  
 
   return (
     <div className="login-container">

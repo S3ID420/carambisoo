@@ -105,10 +105,8 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.progressButton:hover {
-  background-color: var(--color-accent2);
-  transform: scale(1.1);
-}
+
+
 
 .cardActions {
   display: flex;
@@ -127,9 +125,28 @@
 }
 
 .cardFront p {
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .cardBack p {
-  font-size: 16px;
+  font-size: 1rem ;
+}
+@media (max-width: 768px) {
+  .question, .answer {
+    font-size: 16px;
+  }
+
+  .card {
+    height: 220px; /* Reduce height on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .question, .answer {
+    font-size: 14px;
+  }
+
+  .card {
+    height: 180px; /* Further reduce height on very small screens */
+  }
 }

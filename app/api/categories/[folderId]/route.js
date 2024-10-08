@@ -9,12 +9,10 @@ export async function GET(req, { params }) {
   await dbConnect();
 
   try {
+    // Fetch categories for the folder
     const categories = await Category.find({ folder: folderId });
 
-    if (!categories.length) {
-      return NextResponse.json({ message: 'No categories found for this folder' }, { status: 404 });
-    }
-
+    // Directly return the categories (will return an empty array if none exist)
     return NextResponse.json(categories, { status: 200 });
   } catch (error) {
     console.error('Error fetching categories:', error);

@@ -129,6 +129,39 @@
       transform: translateY(0);
   }
 }
+.loader {
+  position: fixed; /* Make it fixed to cover the entire page */
+  top: 50%; /* Center the loader vertically */
+  left: 50%; /* Center the loader horizontally */
+  width: 64px;
+  height: 64px;
+  background-color: #E3A5C7;
+  transform: rotate(45deg);
+  overflow: hidden;
+}
+.loader:after{
+  content: '';
+  position: absolute;
+  inset: 8px;
+  margin: auto;
+  background: #694F8E;
+}
+.loader:before{
+  content: '';
+  position: absolute;
+  inset: -15px;
+  margin: auto;
+  background: #FFDFD6;;
+  animation: diamondLoader 2s linear infinite;
+}
+@keyframes diamondLoader {
+  0%  ,10% {
+    transform: translate(-64px , -64px) rotate(-45deg)
+  }
+  90% , 100% {
+    transform: translate(0px , 0px) rotate(-45deg)
+  }
+}
 
 /* Responsive adjustments for cards */
 @media (max-width: 1200px) {
@@ -142,9 +175,7 @@
       gap: 10px;
       padding: 15px;
   }
-  .cardsContainer p {
-      display: none;
-  }
+  
 }
 
 @media (max-width: 768px) {
@@ -153,9 +184,7 @@
       padding: 10px;
       justify-content: center;
   }
-  .cardsContainer p {
-      display: none;
-  }
+ 
 }
 
 @media (max-width: 576px) {
@@ -166,7 +195,5 @@
       padding: 5px;
       
   }
-  .cardsContainer p {
-      display: none;
-  }
+ 
 }

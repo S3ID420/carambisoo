@@ -23,8 +23,6 @@ export async function POST(req) {
 }
 
 // GET Request - Fetch folders for a specific user
-
-// GET Request - Fetch folders for a specific user
 export async function GET(req) {
   await dbConnect();
 
@@ -43,15 +41,10 @@ export async function GET(req) {
 
     console.log('Fetched folders:', folders); // Debugging
 
-    if (!folders.length) {
-      return NextResponse.json({ message: 'No folders found for this user' }, { status: 200 });
-    }
-
+    // Return the folders (will return an empty array if no folders exist)
     return NextResponse.json(folders, { status: 200 });
   } catch (error) {
     console.error('Error fetching folders:', error); // Debugging
     return NextResponse.json({ message: 'Error fetching folders' }, { status: 500 });
   }
 }
-
-

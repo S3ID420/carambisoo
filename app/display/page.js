@@ -17,6 +17,7 @@ export default function Display() {
   const [modalData, setModalData] = useState({ type: '', folderIndex: null, categoryIndex: null });
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [loading, setLoading] = useState(true);
 
   // Fetch folders and categories for the user
   const fetchFolders = async (userId) => {
@@ -95,13 +96,19 @@ export default function Display() {
 
   useEffect(() => {
     if (session?.user?.id) {
-      fetchFoldersAndCategories(session.user.id);
+      setLoading(true); // Set loader to true before fetching
+      fetchFoldersAndCategories(session.user.id).then(() => {
+        setLoading(false); // Set loader to false after fetching completes
+      }).catch((error) => {
+        setLoading(false); // Handle any errors by stopping the loader
+        console.error(error);
+      });
     }
   }, [session]);
   const handleCategorySelect = ({ folderIndex, categoryIndex }) => {
     const folder = folders[folderIndex];
     const category = folder.categories[categoryIndex];
-    setSelectedCards(category.cards || []);
+    setSelectedCards(category.cards || [],folderIndex, categoryIndex );
   };
 
   const handleAdd = (type, folderIndex = null, categoryIndex = null) => {
@@ -179,6 +186,18 @@ export default function Display() {
       } catch (error) {
         console.error('Error creating card:', error);
       }
+    } if (type === 'edit-card' && question && answer) {
+      const cardId = folders[folderIndex].categories[categoryIndex].cards[cardIndex]._id;
+
+      try {
+        const response = await axios.put(`/api/card/${cardId}`, { question, answer });
+        const updatedFolders = [...folders];
+        updatedFolders[folderIndex].categories[categoryIndex].cards[cardIndex] = response.data; // Update card
+        setFolders(updatedFolders);
+        handleClose();
+      } catch (error) {
+        console.error('Error updating card:', error);
+      }
     }
   };
   // Handle folder deletion
@@ -217,7 +236,40 @@ export default function Display() {
     setNewItemName(folders[folderIndex].categories[categoryIndex].name); // Prepopulate current category name
     setOpenModal(true);
   };
-
+  const handleDeleteCard = async (folderIndex, categoryIndex, cardIndex) => {
+    // Ensure folder, category, and card exist
+    const folder = folders[folderIndex];
+    const category = folder?.categories?.[categoryIndex];
+    const card = category?.cards?.[cardIndex];
+  
+    if (!card) {
+      console.error('Invalid folder, category, or card index');
+      return; // Exit the function if any of them are invalid
+    }
+  
+    const cardId = card._id;
+  
+    try {
+      await axios.delete(`/api/card/${cardId}`);
+  
+      // Make a copy of folders to update the state immutably
+      const updatedFolders = [...folders];
+      updatedFolders[folderIndex].categories[categoryIndex].cards.splice(cardIndex, 1); // Remove the card
+  
+      setFolders(updatedFolders); // Update state after deletion
+    } catch (error) {
+      console.error(`Error deleting card ${cardId}:`, error);
+    }
+  };
+  
+  const handleEditCard = (folderIndex, categoryIndex, cardIndex) => {
+    const card = folders[folderIndex].categories[categoryIndex].cards[cardIndex];
+    setModalTitle('Edit Card');
+    setModalData({ type: 'edit-card', folderIndex, categoryIndex, cardIndex });
+    setQuestion(card.question); // Pre-fill question
+    setAnswer(card.answer); // Pre-fill answer
+    setOpenModal(true);
+  };
 
 
   const modalOverlayStyle = {
@@ -274,7 +326,12 @@ export default function Display() {
   };
 
   return (
-    <div className="appContainer">
+    
+    <>
+    {/* Full-page loader */}
+    {loading ? (
+      <span className="loader"></span> // Show loader when loading is true
+    ) : (<div className="appContainer">
       <NavbarComponent />
       <div className="mainContent">
         <Sidebar
@@ -292,7 +349,10 @@ export default function Display() {
         <div className="cardsContainer">
           {selectedCards.length > 0 ? (
             selectedCards.map((card, index) => (
-              <Card key={index} question={card.question} answer={card.answer} onDelete={() => console.log('Delete card')} />
+              <Card key={index} question={card.question} answer={card.answer} 
+                onDelete={() => handleDeleteCard(selectedCards.folderIndex, selectedCards.categoryIndex, index)} // Pass folderIndex, categoryIndex, and cardIndex
+                onEdit={() => handleEditCard(selectedCards.folderIndex, selectedCards.categoryIndex, index)} // Pass folderIndex, categoryIndex, and cardIndex
+              />
             ))
           ) : (
             <p>Select a category to view cards</p>
@@ -343,6 +403,24 @@ export default function Display() {
                 />
               </>
             )}
+            {modalData.type === 'edit-card' && (
+              <>
+                <input
+                  style={inputStyle}
+                  type="text"
+                  value={question}
+                  onChange={(e) => setQuestion(e.target.value)}
+                  placeholder="Question"
+                />
+                <input
+                  style={inputStyle}
+                  type="text"
+                  value={answer}
+                  onChange={(e) => setAnswer(e.target.value)}
+                  placeholder="Answer"
+                />
+              </>
+            )}
             {modalData.type === 'folder' && (
               <input
                 style={inputStyle}
@@ -373,5 +451,6 @@ export default function Display() {
         </div>
       )}
     </div>
-  );
+  )}
+  </>);
 }

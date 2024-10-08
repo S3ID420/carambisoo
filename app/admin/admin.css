@@ -1,6 +1,6 @@
 /* admin.css */
 body {
-    background-color: #e9ecef;
+    
     font-family: 'Inter', sans-serif;
     color: #333;
   }
@@ -8,17 +8,28 @@ body {
   .container {
     margin-top: 20px;
   }
-  
+  .admin-dashboard{
+    width: 100%;
+
+  }
   h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
     text-align: center;
-    color: #0d6efd;
+    color: #6f1572;
+    
+    
   }
+  .admin-dashboard h5 {
+    color: #555; 
+    text-align: center; 
+    margin-top: 10px; 
+}
+
   
   .user-card {
     transition: transform 0.2s ease;
-    border: 1px solid #dee2e6;
+    border: 3px solid #6f1572;
     border-radius: 12px;
 }
 
@@ -28,7 +39,7 @@ body {
 
 .card-title {
     font-size: 1.25rem;
-    color: #0d6efd;
+    color: #6f1572;
 }
 
 .card-text {
@@ -46,6 +57,32 @@ body {
         margin: 0 auto;
     }
 }
+
+/* Navbar Styles */
+.admin-navbar {
+    background-color: #6a0dad; /* Purple background */
+    padding: 0.5 rem;
+    
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-img {
+    height: 70px;
+    width: auto;  }
+  
+  .admin-navbar .btn-light {
+    color: #6a0dad; /* Purple text color */
+    border-color: #ffffff;
+    background-color: #ffffff; /* White button for sign out */
+  }
+  
+ 
+  
+  /* Additional styling for spacing and responsiveness */
   
   
   
