@@ -36,7 +36,7 @@ To run the project locally, follow these steps:
 Clone the repository:
 
 bash
-git clone https://github.com/yourusername/carambisoo.git
+git clone https://github.com/mayssaoueslati/carambisoo.git
 Navigate to the project directory:
 
 bash
