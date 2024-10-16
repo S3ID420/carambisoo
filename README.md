@@ -27,7 +27,9 @@ Flashcard Routes: API endpoints to create, read, update, and delete flashcards.
 Category and Folder Routes: Endpoints for creating and managing categories and folders.
 Authentication: Basic login and registration functionality for users and admin.
 
-https://github.com/user-attachments/assets/17a62095-6ecf-440b-adf5-eff0e3b05e8b
+https://github.com/user-attachments/assets/17a62095-6ecf-440b-adf5-eff0e3b05e8b 
+
+
 Installation
 To run the project locally, follow these steps:
 
