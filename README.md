@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Project Overview
+Carambisoo allows users to create categories and folders that contain flashcards. Users can create, edit, delete, and organize flashcards to track their progress on different topics. The admin dashboard provides additional control for managing content.
 
-## Getting Started
+Key Features:
+Create Flashcards: Users can create flashcards with a front (question) and back (answer).
+Organize by Category and Folder: Flashcards are grouped in categories and folders for better organization.
+Edit & Delete: Users can modify or remove flashcards, folders, and categories as needed.
+Admin Dashboard: Manage flashcards, categories, and folders with more control.
+Tech Stack
+The Carambisoo website is built using a modern tech stack for both the frontend and backend.
 
-First, run the development server:
+Frontend:
+Next.js: A React-based framework for server-side rendering and static site generation.
+CSS: Used for styling the components to ensure a clean and user-friendly interface.
+Backend:
+Node.js: JavaScript runtime used to power the server.
+Express.js: Web application framework for handling routes and backend logic.
+MongoDB: NoSQL database used to store user data, flashcards, categories, and folders.
+Pages and Components
+Frontend:
+Home Page: Displays a general overview and guides users to their flashcards.
+Category & Folder Management: Users can create categories, and within them, folders that contain flashcards.
+Flashcard Creation: Users can add flashcards with a question and answer, and categorize them.
+Flashcard Edit & Delete: Options for editing and deleting flashcards are available to keep content updated.
+Admin Dashboard: Accessible to admins to manage flashcards, categories, and folders.
+Backend:
+Flashcard Routes: API endpoints to create, read, update, and delete flashcards.
+Category and Folder Routes: Endpoints for creating and managing categories and folders.
+Authentication: Basic login and registration functionality for users and admin.
+Installation and Setup
+To run this project locally, follow these steps:
 
-```bash
+Clone the repository:
+
+bash
+Copier le code
+git clone https://github.com/yourusername/carambisoo-flashcards.git
+Install dependencies:
+
+bash
+Copier le code
+npm install
+Set up environment variables by creating a .env.local file in the root directory:
+
+bash
+Copier le code
+MONGODB_URI=your_mongo_database_uri
+Run the development server:
+
+bash
+Copier le code
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The website will be accessible at http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Backend Setup
+The backend is managed using Express.js and MongoDB. To set it up:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Ensure MongoDB is installed and running.
+Modify the backend configuration (server.js or app.js) to suit your setup.
+Run the backend server:
+bash
+Copier le code
+npm start
+Usage
+Adding a Flashcard: Navigate to a folder within a category, and click "Add Flashcard" to create a new card.
+Managing Folders and Categories: Use the "Create Folder" and "Create Category" buttons to organize your flashcards.
+Contributing
+We welcome contributions to improve Carambisoo! To contribute:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Fork the repository.
+Create a new branch for your feature or bugfix.
+Open a pull request once your changes are tested.
+Please ensure your contributions align with our coding standards and guidelines.
