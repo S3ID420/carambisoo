@@ -28,4 +28,44 @@ Category and Folder Routes: Endpoints for creating and managing categories and f
 Authentication: Basic login and registration functionality for users and admin.
 
 https://github.com/user-attachments/assets/17a62095-6ecf-440b-adf5-eff0e3b05e8b
+Installation
+To run the project locally, follow these steps:
 
+Clone the repository:
+
+bash
+git clone https://github.com/yourusername/carambisoo.git
+Navigate to the project directory:
+
+bash
+cd carambisoo
+Install the frontend dependencies:
+
+bash
+npm install
+Navigate to the backend directory (if applicable):
+
+bash
+cd backend
+Install the backend dependencies:
+
+bash
+npm install
+Set up the environment variables:
+
+Create a .env file in the root directory and add the necessary environment variables for MongoDB connection and JWT secret.
+Start the backend server:
+
+bash
+npm run start
+Start the frontend development server:
+
+bash
+npm run dev
+Open your browser and go to http://localhost:3000.
+
+Usage
+Sign up for a new account or log in to an existing one.
+Create categories and folders to organize your flashcards.
+Add, edit, or delete flashcards as needed.
+Use the study mode to review your flashcards and track your progress.
